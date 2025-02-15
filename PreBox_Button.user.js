@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        PreBox Button
 // @namespace        http://tampermonkey.net/
-// @version        0.2
+// @version        0.3
 // @description        ウェブページ掲載の「preタグ」内のコードをコピーする
 // @author        Ameblo User
 // @match        https://ameblo.jp/*
@@ -58,6 +58,15 @@ document.addEventListener('click', function(event){
                 pbop_sw.style.left=(event.pageX)/zoom_f +"px";
                 pbop_sw.style.top=((event.pageY)/zoom_f -34) +"px";
 
+                let selection=window.getSelection();
+                let range=document.createRange();
+                let textNode=elem.childNodes[0];
+                range.setStart(textNode, 0);
+                range.setEnd(textNode, elem.textContent.length);
+                if(selection.rangeCount>0){
+                    selection.removeAllRanges(); }
+                selection.addRange(range);
+
                 pbop_sw.onclick=function(e){
                     e.stopImmediatePropagation();
                     get_copy(elem, pbop_sw); }}
@@ -82,4 +91,3 @@ function get_copy(preb, sw){
                 sw_span.textContent='Copy code ';
             }, 1500 );
         })}} // get_copy()
-
