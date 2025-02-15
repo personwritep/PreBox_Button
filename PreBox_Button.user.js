@@ -58,13 +58,10 @@ document.addEventListener('click', function(event){
                 pbop_sw.style.left=(event.pageX)/zoom_f +"px";
                 pbop_sw.style.top=((event.pageY)/zoom_f -34) +"px";
 
-                let selection=window.getSelection();
+                let selection=document.getSelection();
                 let range=document.createRange();
-                let textNode=elem.childNodes[0];
-                range.setStart(textNode, 0);
-                range.setEnd(textNode, elem.textContent.length);
-                if(selection.rangeCount>0){
-                    selection.removeAllRanges(); }
+                range.selectNodeContents(elem);
+                selection.removeAllRanges();
                 selection.addRange(range);
 
                 pbop_sw.onclick=function(e){
