@@ -52,8 +52,8 @@ document.addEventListener('click', function(event){
 
     let pbop_sw=document.querySelector('.pbop_sw');
     if(pbop_sw){
-        let elem=document.elementFromPoint(event.clientX, event.clientY);
-        if(elem && elem.tagName=='PRE'){
+        let pre_elem=event.target.closest('pre');
+        if(pre_elem){
             if(event.ctrlKey){
                 pbop_sw.style.display='block';
                 pbop_sw.style.left=(event.pageX)/zoom_f +"px";
@@ -61,17 +61,18 @@ document.addEventListener('click', function(event){
 
                 let selection=document.getSelection();
                 let range=document.createRange();
-                range.selectNodeContents(elem);
+                range.selectNodeContents(pre_elem);
                 selection.removeAllRanges();
                 selection.addRange(range);
 
                 pbop_sw.onclick=function(e){
                     e.stopImmediatePropagation();
-                    get_copy(elem, pbop_sw); }}
+                    get_copy(pre_elem, pbop_sw); }}
             else{
                 pbop_sw.style.display='none'; }}
         else{
             pbop_sw.style.display='none'; }}
+
 });
 
 
