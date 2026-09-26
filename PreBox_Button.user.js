@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name        PreBox Button
 // @namespace        http://tampermonkey.net/
-// @version        0.3
+// @version        0.4
 // @description        ウェブページ掲載の「preタグ」内のコードをコピーする
 // @author        Ameblo User
 // @match        https://ameblo.jp/*
 // @match        https://developer.mozilla.org/*
+// @match        https://www.google.com/search*
 // @icon        https://www.google.com/s2/favicons?sz=64&domain=ameba.jp
 // @noframes
 // @grant        none
